@@ -1,31 +1,7 @@
-const express = require("express");
-const app = express();
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
-require("dotenv/config");
+var http = require('http');
 
-const postsRoute = require("./routes/posts");
-
-app.use(bodyParser.json());
-app.use("/posts", postsRoute);
-
-//Routes
-app.get("/", (req, res) => {
-  try {
-    res.send("This is My world");
-  } catch (error) {}
-});
-
-//COnnect to db
-mongoose.connect(process.env.DB_URL);
-
-// app.use((err, req, res, next) => {
-//   console.log("akjdbjasbdas", err);
-//   return res.json({
-//     status: err.statusCode || 400,
-//     message: err
-//   });
-// });
-
-// Strat to listening the app
-app.listen(3000);
+//create a server object:
+http.createServer(function (req, res) {
+  res.write('** Welcome to GlobalLogic!!!! **'); //write a response to the client
+  res.end(); //end the response
+}).listen(80); //the server object listens on port 80
